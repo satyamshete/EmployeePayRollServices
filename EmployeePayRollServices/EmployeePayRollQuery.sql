@@ -10,3 +10,5 @@ Create table employee_payroll (
 );
 -----------UC3-------------
 insert into employee_payroll values('ArunKumar',325684.12,'2018-08-15'),('Dinesh',225684.12,'2015-08-05'),('Dinesh',15863.21,GETDATE());
+-----------UC4--------
+ select * from employee_payroll
