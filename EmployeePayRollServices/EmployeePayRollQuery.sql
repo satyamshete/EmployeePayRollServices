@@ -43,3 +43,8 @@ update employee_payroll set  PhoneNumber=1259954 where Name='Shweta';
 alter table employee_payroll add Gender char(1) not null default 'M';
 EXEC sp_rename 'employee_payroll.Salary', 'BasicPay', 'COLUMN';
 Alter table employee_payroll add Deductions float,Taxable_Pay float,Income_Tax float, Net_Pay float;
+----------UC10----------
+insert into  employee_payroll (Name,BasicPay,StartDate,Gender,PhoneNumber,Addresss,Department)
+ Values('Terissa', 10500.23, '2017-08-17','F',10256982,'Nagpur','Marketing')
+ insert into  employee_payroll (Name,BasicPay,StartDate,Gender,PhoneNumber,Addresss,Department)
+ Values('Terissa', 10500.23, '2017-08-17','F',10256982,'Nagpur','Sales')
