@@ -17,3 +17,7 @@ SELECT * FROM employee_payroll where  name = 'ArunKumar';
 SELECT * FROM employee_payroll where StartDate between '2018-08-15' and '2022-10-15';
 SELECT * FROM employee_payroll where StartDate between '2018-08-15' and GETDATE();
 SELECT * FROM employee_payroll where StartDate between cast ('05-15-2015' as date) and '2022-10-15';
+-----------UC6-------
+alter table employee_payroll add Gender char(1) not null default 'M';
+update employee_payroll set Name = 'Shweta' where Id = 3;
+update employee_payroll set Gender = 'F' where Name = 'Shweta';
