@@ -48,3 +48,85 @@ insert into  employee_payroll (Name,BasicPay,StartDate,Gender,PhoneNumber,Addres
  Values('Terissa', 10500.23, '2017-08-17','F',10256982,'Nagpur','Marketing')
  insert into  employee_payroll (Name,BasicPay,StartDate,Gender,PhoneNumber,Addresss,Department)
  Values('Terissa', 10500.23, '2017-08-17','F',10256982,'Nagpur','Sales')
+ -----------UC11-------------
+ Create Table Company
+(CompanyID int identity(1,1) primary key,
+CompanyName varchar(100))
+
+--Insert Values in Company
+Insert into Company values ('Amazon'),('Netflix')
+Select * from Company
+
+drop table employee_payroll
+
+
+--Creating Employee Table
+create table Employee
+(EmployeeID int identity(1,1) primary key,
+CompanyIdentity int,
+EmployeeName varchar(200),
+EmployeePhoneNumber bigInt,
+EmployeeAddress varchar(200),
+StartDate date,
+Gender char,
+Foreign key (CompanyIdentity) references Company(CompanyID)
+)
+
+--Inserting Values in Employee table
+insert into Employee values
+(1,'Smita Pawar',9842905050,'street 123 GT Road','2012-03-28','F'),
+(2,'Deepak Kumar',9842905550,'big Market near kotara phase, 94533','2017-04-22','M'),
+(1,'Rahu Tripathi',7812905050,'bir bhaghera,Tira Sujanpur','2015-08-22','M'),
+(2,'Nilesh Kulkarni',78129050000,'chandnicHowk delhi','2012-08-29','M')
+Select * from Employee
+--Creating Payroll Table
+create table PayrollCalculate
+(BasicPay float,
+Deductions float,
+TaxablePay float,
+IncomeTax float,
+NetPay float,
+EmployeeIdentity int,
+Foreign key (EmployeeIdentity) references Employee(EmployeeID)
+)
+
+--Inserting Values in Payroll Table
+insert into PayrollCalculate(BasicPay,Deductions,IncomeTax,EmployeeIdentity) values 
+(2700000,1000000,20000,1),
+(3300000,200000,4000,2),
+(7500000,10000,5000,3),
+(9000000,30000,6784,4)
+
+--Updating Derived attribute values 
+update PayrollCalculate set TaxablePay=BasicPay-Deductions
+update PayrollCalculate set NetPay=TaxablePay-IncomeTax
+select * from PayrollCalculate
+
+--Creating Department Table
+create table Department
+(
+DepartmentId int identity(1,1) primary key,
+DepartName varchar(100)
+)
+--Insert Values in Department Table
+insert into Department values
+('Marketing'),
+('Sales'),
+('Publishing')
+select * from Department
+
+--Creating table EmployeeDepartment
+create table EmployeeDepartment
+(
+DepartmentIdentity int ,
+EmployeeIdentity int,
+Foreign key (EmployeeIdentity) references Employee(EmployeeID),
+Foreign key (DepartmentIdentity) references Department(DepartmentID)
+)
+--Inserting Values in EmployeeDepartment
+insert into EmployeeDepartment values
+(3,1),
+(2,2),
+(1,3),
+(3,4)		
+select * from EmployeeDepartment
